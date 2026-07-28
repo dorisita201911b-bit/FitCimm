@@ -144,7 +144,6 @@ public class SocioDao {
         return false;
     }
 
-    //Consultar
     //Editar
     public void MtEditarSocio(Socio so) throws SQLException {
         String sql = "UPDATE socio SET nombres = ?, apellidos = ?, telefono = ?, correo = ?, fecha_Nacimiento = ?, activo =? WHERE id_Socio = ?";
@@ -234,6 +233,43 @@ public class SocioDao {
         ps.setInt(2, idSocio);
 
         return ps.executeUpdate() > 0;
+    }
+
+    //Buscar
+    public List<Socio> buscarPorDocumentoApellido(String dato) throws Exception {
+
+        List<Socio> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM socio "
+                + "WHERE documento LIKE ? "
+                + "OR apellidos LIKE ?";
+
+        try (Connection con = Conexion.getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + dato + "%");
+            ps.setString(2, "%" + dato + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Socio s = new Socio();
+
+                s.setIdSocio(rs.getInt("id_socio"));
+                s.setDocumento(rs.getString("documento"));
+                s.setNombres(rs.getString("nombres"));
+                s.setApellidos(rs.getString("apellidos"));
+                s.setTelefono(rs.getString("telefono"));
+                s.setCorreo(rs.getString("correo"));
+                s.setFechaNacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
+                s.setActivo(rs.getBoolean("activo"));
+
+                lista.add(s);
+            }
+
+        }
+
+        return lista;
     }
 
 }

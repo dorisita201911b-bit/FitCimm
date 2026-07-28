@@ -106,6 +106,10 @@ public class SocioService {
     public boolean desactivar(int idSocio) throws Exception {
         return dao.desactivar(idSocio);
     }
+    //Buscar socio
+    public List<Socio> buscarPorDocumentoApellido(String dato) throws Exception {
+    return dao.buscarPorDocumentoApellido(dato);
+}
    
 }
 

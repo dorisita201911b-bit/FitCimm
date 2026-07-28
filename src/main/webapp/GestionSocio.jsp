@@ -141,17 +141,29 @@
 
                 <!-- Buscador -->
                 <div class="fit-card rounded-2xl p-4 sm:p-6 mb-8">
-                    <form class="flex flex-col sm:flex-row gap-3">
+                    <form action="SocioController" method="get" class="flex flex-col sm:flex-row gap-3">
+
+                        <input type="hidden" name="accion" value="buscar">
+
                         <div class="relative flex-grow">
-                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-cyan-fit">search</span>
-                            <input type="text" 
-                                   placeholder="Buscar socio por nombre, documento o código..." 
-                                   class="w-full bg-[#051322] border border-cyan-fit/40 focus:border-cyan-fit focus:ring-1 focus:ring-cyan-fit rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-400 transition-all">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-cyan-fit">
+                                search
+                            </span>
+
+                            <input
+                                type="text"
+                                name="buscar"
+                                placeholder="Buscar por documento o apellido..."
+                                class="w-full bg-[#051322] border border-cyan-fit/40 focus:border-cyan-fit focus:ring-1 focus:ring-cyan-fit rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-400 transition-all"
+                                required>
                         </div>
-                        <button type="submit" class="inline-flex items-center justify-center gap-2 btn-cyan font-bold py-3 px-6 rounded-xl transition-all duration-300 text-sm">
+
+                        <button type="submit"
+                                class="inline-flex items-center justify-center gap-2 btn-cyan font-bold py-3 px-6 rounded-xl transition-all duration-300 text-sm">
                             <span class="material-symbols-outlined text-lg">search</span>
                             <span>Buscar</span>
                         </button>
+
                     </form>
                 </div>
 

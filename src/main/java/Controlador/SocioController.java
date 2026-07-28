@@ -107,6 +107,27 @@ public class SocioController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } //Buscar Socio
+        else if ("buscar".equals(accion)) {
+
+            try {
+
+                String dato = request.getParameter("buscar");
+
+                List<Socio> lista = service.buscarPorDocumentoApellido(dato);
+
+                request.setAttribute("listaSocios", lista);
+
+                request.getRequestDispatcher("GestionSocio.jsp")
+                        .forward(request, response);
+
+            } catch (Exception e) {
+
+                request.setAttribute("error", e.getMessage());
+
+                request.getRequestDispatcher("GestionSocio.jsp")
+                        .forward(request, response);
+            }
         }
 
     }
@@ -221,5 +242,4 @@ public class SocioController extends HttpServlet {
         }
     }
 
-    
 }
