@@ -19,7 +19,7 @@ public class PlanController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req,
-            HttpServletResponse resp) throws IOException {
+            HttpServletResponse resp) throws IOException, ServletException {
 
         String accion = req.getParameter("accion");
 
@@ -54,6 +54,7 @@ public class PlanController extends HttpServlet {
             try {
 
                 Plan plan = new Plan();
+
                 plan.setIdPlan(Integer.parseInt(req.getParameter("id")));
                 plan.setNombre(req.getParameter("nombre"));
                 plan.setDuracionDias(Integer.parseInt(req.getParameter("duracionDias")));
@@ -62,14 +63,14 @@ public class PlanController extends HttpServlet {
 
                 service.actualizar(plan);
 
-                req.setAttribute("mensaje", "¡El plan se actualizo correctamente!");
-                service.actualizar(plan);
-
                 resp.sendRedirect("PlanController?accion=listaPlanes");
 
             } catch (Exception e) {
-                e.printStackTrace();
-                resp.getWriter().println("ERROR: " + e.getMessage());
+
+                req.setAttribute("error", e.getMessage());
+
+                req.getRequestDispatcher("EditarPlan.jsp").forward(req, resp);
+
             }
 
         }
