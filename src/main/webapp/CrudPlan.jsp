@@ -88,7 +88,9 @@
 
         <!-- Fondo de pantalla con overlay -->
         <div class="fixed inset-0 z-0">
-            <img alt="Gym Background" class="w-full h-full object-cover scale-105" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop"/>
+            <img alt="Gym Interior"
+                 class="w-full h-full object-cover opacity-100 scale-105"
+                 src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop"/>
             <div class="absolute inset-0 premium-overlay"></div>
         </div>
 

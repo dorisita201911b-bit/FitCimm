@@ -68,7 +68,9 @@
     <body class="min-h-screen relative flex items-center justify-center overflow-x-hidden selection:bg-primary selection:text-slate-950">
         <!-- Full-screen Background (Nueva imagen de gimnasio moderno y amplio) -->
         <div class="fixed inset-0 z-0">
-            <img alt="Gym Interior" class="w-full h-full object-cover opacity-100 scale-105" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop"/>
+            <img alt="Gym Interior"
+                 class="w-full h-full object-cover opacity-100 scale-105"
+                 src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop"/>
             <div class="absolute inset-0 premium-overlay"></div>
         </div>
 
@@ -155,7 +157,7 @@
                         <!-- Ventas -->
                         <button
                             class="w-full py-2.5 px-4 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-[10px] uppercase tracking-[0.1em] rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
-                            onclick="event.stopPropagation(); location.href = 'RegistrarMembresia.jsp';">
+                            onclick="event.stopPropagation(); location.href = 'GestionPlanesyMembresia.jsp';">
                             <span>VENTAS DE PLANES</span>
                             <span class="material-symbols-outlined text-xs">arrow_forward</span>
                         </button>

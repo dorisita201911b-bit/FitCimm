@@ -188,14 +188,21 @@
                 <div class="mb-4">
                     <h2 class="h5 text-info fw-bold mb-3" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Registrar ingreso</h2>
                     <form action="SocioController" method="post" class="row g-3 align-items-end">
-                        <input type="hidden" name="accion" value="registrar">
+                        <input type="hidden" name="accion" value="ingreso">
+
                         <div class="col-md-8">
                             <label class="form-label">Documento:</label>
-                            <input type="text" class="form-control" name="documento" maxlength="10" placeholder="Ingrese número de documento" required>
+                            <input type="text" 
+                                   class="form-control" 
+                                   name="documento" 
+                                   maxlength="10" 
+                                   placeholder="Ingrese número de documento" 
+                                   required>
                         </div>
+
                         <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary-custom w-100 d-flex align-items-center justify-content-center gap-2">
-                                <i class="bi bi-box-arrow-in-right"></i> Registrar Ingreso
+                            <button type="submit" class="btn btn-primary-custom w-100">
+                                Registrar Ingreso
                             </button>
                         </div>
                     </form>

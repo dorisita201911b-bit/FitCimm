@@ -1,13 +1,19 @@
 package Servicio;
 
 import Dao.IngresoDao;
+import Dao.MembresiaDao;
 import Dao.SocioDao;
+import Modelo.EstadoMembresia;
+import Modelo.Membresia;
 import Modelo.Socio;
 
 public class IngresoServicio {
 
     private SocioDao socioDao;
     private IngresoDao ingresoDao;
+    private MembresiaDao membresiaDao = new MembresiaDao();
+
+    private MembresiaServicio mem = new MembresiaServicio();
 
     public IngresoServicio() {
 
@@ -20,6 +26,23 @@ public class IngresoServicio {
 
         // Buscar socio
         Socio socio = socioDao.buscarPorDocumento(documento);
+
+        if (socio == null) {
+            return "❌ El socio no existe.";
+        }
+
+// SOLO DESPUÉS de comprobar que socio existe
+        Membresia membresia = membresiaDao.buscarUltimaMembresia(socio.getIdSocio());
+
+        if (membresia == null) {
+            return "❌ El socio no tiene una membresía registrada.";
+        }
+
+        EstadoMembresia estado = mem.getEstado(membresia);
+
+        if (estado == EstadoMembresia.VENCIDAS) {
+            return "❌ La membresía está vencida.";
+        }
 
         if (socio == null) {
 

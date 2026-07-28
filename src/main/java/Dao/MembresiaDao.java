@@ -1,7 +1,10 @@
 package Dao;
 
 import Modelo.Membresia;
+import Modelo.Plan;
+import Modelo.Socio;
 import Util.Conexion;
+import java.math.BigDecimal;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -160,10 +163,6 @@ public class MembresiaDao {
 
             }
 
-            rs.close();
-            ps.close();
-            con.close();
-
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -201,7 +200,12 @@ public class MembresiaDao {
 
         List<Membresia> lista = new ArrayList<>();
 
-        String sql = "SELECT * FROM membresia WHERE id_Socio=? ORDER BY fecha_Inicio DESC";
+        String sql
+                = "SELECT m.*, p.nombre "
+                + "FROM membresia m "
+                + "INNER JOIN plan p ON m.id_plan = p.id_plan "
+                + "WHERE m.id_socio = ? "
+                + "ORDER BY m.fecha_inicio DESC";
 
         try (Connection cn = Conexion.getConexion(); PreparedStatement ps = cn.prepareStatement(sql)) {
 
@@ -213,12 +217,16 @@ public class MembresiaDao {
 
                 Membresia m = new Membresia();
 
-                m.setIdMembresia(rs.getInt("id_Membresia"));
-                m.setIdSocio(rs.getInt("id_Socio"));
-                m.setIdPlan(rs.getInt("id_Plan"));
-                m.setFechaInicio(rs.getDate("fecha_Inicio").toLocalDate());
-                m.setFechaFin(rs.getDate("fecha_Fin").toLocalDate());
-                m.setValorPagado(rs.getBigDecimal("valor_Pagado"));
+                m.setIdMembresia(rs.getInt("id_membresia"));
+                m.setIdSocio(rs.getInt("id_socio"));
+                m.setIdPlan(rs.getInt("id_plan"));
+                m.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
+                m.setFechaFin(rs.getDate("fecha_fin").toLocalDate());
+                m.setValorPagado(rs.getBigDecimal("valor_pagado"));
+
+                Plan p = new Plan();
+                p.setNombre(rs.getString("nombre"));
+                m.setPlan(p);
 
                 lista.add(m);
             }
@@ -232,7 +240,11 @@ public class MembresiaDao {
 
         List<Membresia> lista = new ArrayList<>();
 
-        String sql = "SELECT * FROM membresia";
+        String sql
+                = "SELECT m.*, s.documento, s.nombres, s.apellidos, p.nombre "
+                + "FROM membresia m "
+                + "INNER JOIN socio s ON m.id_socio = s.id_socio "
+                + "INNER JOIN plan p ON m.id_plan = p.id_plan";
 
         try (Connection con = Conexion.getConexion(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
@@ -246,6 +258,19 @@ public class MembresiaDao {
                 m.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
                 m.setFechaFin(rs.getDate("fecha_fin").toLocalDate());
                 m.setValorPagado(rs.getBigDecimal("valor_pagado"));
+
+                // Crear el socio
+                Socio s = new Socio();
+                s.setDocumento(rs.getString("documento"));
+                s.setNombres(rs.getString("nombres"));
+                s.setApellidos(rs.getString("apellidos"));
+
+                m.setSocio(s);
+
+                // Crear el plan
+                Plan p = new Plan();
+                p.setNombre(rs.getString("nombre"));
+                m.setPlan(p);
 
                 lista.add(m);
             }

@@ -27,7 +27,7 @@ public class SocioDao {
                 + "m.fecha_fin, "
                 + "DATEDIFF(m.fecha_fin, CURDATE()) AS dias_restantes "
                 + "FROM socio s "
-                + "INNER JOIN membresia m ON s.id_socio = m.id_socio "
+                + "LEFT JOIN membresia m ON s.id_socio = m.id_socio "
                 + "WHERE s.documento = ? "
                 + "ORDER BY m.fecha_fin DESC "
                 + "LIMIT 1";

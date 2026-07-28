@@ -204,7 +204,7 @@
                         <i class="bi bi-person-plus me-2"></i> Vender / Renovar Membresía
                     </h2>
                     
-                    <form action="MembresiaController" method="post">
+                    <form action="MembresiasController" method="post">
                         <input type="hidden" name="accion" value="vender">
 
                         <div class="row g-3">
@@ -254,7 +254,7 @@
                         <i class="bi bi-calendar-event me-2"></i> Membresías próximas a vencer
                     </h2>
 
-                    <form action="MembresiaController" method="post" class="mb-3">
+                    <form action="MembresiasController" method="post" class="mb-3">
                         <input type="hidden" name="accion" value="vencimientos">
                         <button type="submit" class="btn btn-primary-custom d-flex align-items-center gap-2">
                             <i class="bi bi-search"></i> Consultar vencimientos

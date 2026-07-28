@@ -1,28 +1,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="Modelo.Membresia"%>
+<%@page import="Modelo.Socio"%>
+
 <%@page import="Modelo.EstadoMembresia"%>
 
 <%
-String error = (String) request.getAttribute("error");
-if(error != null){
+    String error = (String) request.getAttribute("error");
+    if (error != null) {
 %>
 <script>
-    alert("<%= error %>");
+    alert("<%= error%>");
 </script>
 <%
-}
+    }
 %>
 
 <%
-String mensaje = (String) request.getAttribute("mensaje");
-if(mensaje != null){
+    String mensaje = (String) request.getAttribute("mensaje");
+    if (mensaje != null) {
 %>
 <script>
-    alert("<%= mensaje %>");
+    alert("<%= mensaje%>");
 </script>
 <%
-}
+    }
 %>
 
 <!DOCTYPE html>
@@ -80,27 +82,29 @@ if(mensaje != null){
         </style>
 
         <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "cyan-fit": "#28A7E0",
-                        "cyan-glow": "#00A3E0",
-                        "navy-dark": "#08111e",
-                        "card-bg": "#0a192f"
-                    }
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "cyan-fit": "#28A7E0",
+                    "cyan-glow": "#00A3E0",
+                    "navy-dark": "#08111e",
+                    "card-bg": "#0a192f"
                 }
             }
         }
+    }
         </script>
     </head>
     <body class="min-h-screen relative overflow-x-hidden text-slate-100 selection:bg-cyan-fit selection:text-slate-950">
 
         <!-- Fondo de pantalla con overlay -->
         <div class="fixed inset-0 z-0">
-            <img alt="Gym Background" class="w-full h-full object-cover scale-105" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop"/>
-            <div class="absolute inset-0 overlay-dark"></div>
+            <img alt="Gym Interior"
+                 class="w-full h-full object-cover opacity-100 scale-105"
+                 src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop"/>
+            <div class="absolute inset-0 premium-overlay"></div>
         </div>
 
         <!-- Wrapper Principal -->
@@ -136,8 +140,7 @@ if(mensaje != null){
                         <table class="w-full text-left border-collapse fit-table">
                             <thead>
                                 <tr>
-                                    <th class="py-4 px-6 font-bold">ID Membresía</th>
-                                    <th class="py-4 px-6 font-bold">Socio</th>
+                                    <th class="py-4 px-6 font-bold">Documento Socio</th>
                                     <th class="py-4 px-6 font-bold">Plan</th>
                                     <th class="py-4 px-6 font-bold">Fecha Inicio</th>
                                     <th class="py-4 px-6 font-bold">Fecha Fin</th>
@@ -150,58 +153,59 @@ if(mensaje != null){
                                 <%
                                     List<Membresia> lista = (List<Membresia>) request.getAttribute("listaMembresias");
 
-                                    if(lista != null && !lista.isEmpty()){
-                                        for(Membresia m : lista){
+                                    if (lista != null && !lista.isEmpty()) {
+                                        for (Membresia m : lista) {
                                 %>
 
                                 <tr class="transition-colors duration-150">
                                     <td class="py-4 px-6 font-mono font-bold text-cyan-fit">
-                                        #<%= m.getIdMembresia()%>
+                                        #<%= m.getSocio().getDocumento()%>
                                     </td>
 
                                     <td class="py-4 px-6 font-medium text-slate-200">
                                         <div class="flex items-center gap-2">
                                             <span class="material-symbols-outlined text-slate-400 text-base">person</span>
-                                            <span><%= m.getIdSocio() %></span>
+                                            <span><%= m.getSocio().getNombres()%>
+                                                <%= m.getSocio().getApellidos()%></span>
                                         </div>
                                     </td>
 
                                     <td class="py-4 px-6 font-medium text-slate-200">
                                         <div class="flex items-center gap-2">
                                             <span class="material-symbols-outlined text-slate-400 text-base">fitness_center</span>
-                                            <span><%= m.getIdPlan() %></span>
+                                            <span><%= m.getPlan().getNombre() %></span>
                                         </div>
                                     </td>
 
                                     <td class="py-4 px-6 text-slate-300 whitespace-nowrap">
-                                        <%= m.getFechaInicio() %>
+                                        <%= m.getFechaInicio()%>
                                     </td>
 
                                     <td class="py-4 px-6 text-slate-300 whitespace-nowrap">
-                                        <%= m.getFechaFin() %>
+                                        <%= m.getFechaFin()%>
                                     </td>
 
                                     <td class="py-4 px-6 font-semibold text-emerald-400 whitespace-nowrap">
-                                        $ <%= m.getValorPagado() %>
+                                        $ <%= m.getValorPagado()%>
                                     </td>
 
                                     <td class="py-4 px-6 text-center whitespace-nowrap">
                                         <%
-                                            if(m.getEstado() == EstadoMembresia.VIGENTE){
+                                            if (m.getEstado() == EstadoMembresia.VIGENTE) {
                                         %>
                                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                                             VIGENTE
                                         </span>
                                         <%
-                                            } else if(m.getEstado() == EstadoMembresia.POR_VENCER){
+                                        } else if (m.getEstado() == EstadoMembresia.POR_VENCER) {
                                         %>
                                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
                                             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                                             POR VENCER
                                         </span>
                                         <%
-                                            } else {
+                                        } else {
                                         %>
                                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30">
                                             <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
@@ -214,8 +218,8 @@ if(mensaje != null){
                                 </tr>
 
                                 <%
-                                        }
-                                    } else {
+                                    }
+                                } else {
                                 %>
                                 <tr>
                                     <td colspan="7" class="py-12 text-center text-slate-400">

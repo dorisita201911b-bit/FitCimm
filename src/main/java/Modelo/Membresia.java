@@ -20,11 +20,13 @@ public class Membresia {
     private String documento;
     private String nombreSocio;
     private String nombrePlan;
+    private Socio socio;
+    private Plan plan;
 
     public Membresia() {
     }
 
-    public Membresia(int idMembresia, int idSocio, int idPlan, LocalDate fechaInicio, LocalDate fechaFin, BigDecimal valorPagado, EstadoMembresia estado, String documento, String nombreSocio, String nombrePlan) {
+    public Membresia(int idMembresia, int idSocio, int idPlan, LocalDate fechaInicio, LocalDate fechaFin, BigDecimal valorPagado, EstadoMembresia estado, String documento, String nombreSocio, String nombrePlan, Socio socio, Plan plan) {
         this.idMembresia = idMembresia;
         this.idSocio = idSocio;
         this.idPlan = idPlan;
@@ -35,7 +37,11 @@ public class Membresia {
         this.documento = documento;
         this.nombreSocio = nombreSocio;
         this.nombrePlan = nombrePlan;
+        this.socio = socio;
+        this.plan = plan;
     }
+    
+
     
 
     
@@ -118,6 +124,22 @@ public class Membresia {
 
     public void setEstado(EstadoMembresia estado) {
         this.estado = estado;
+    }
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
     
 

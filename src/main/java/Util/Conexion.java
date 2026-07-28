@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class Conexion {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/fit_cimm";
+    private static final String URL = "jdbc:mysql://localhost:3306/fitcimm";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 

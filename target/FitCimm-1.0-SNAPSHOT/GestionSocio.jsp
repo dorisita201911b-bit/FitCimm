@@ -98,8 +98,10 @@
 
         <!-- Fondo de pantalla con overlay -->
         <div class="fixed inset-0 z-0">
-            <img alt="Gym Background" class="w-full h-full object-cover scale-105" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop"/>
-            <div class="absolute inset-0 overlay-dark"></div>
+            <img alt="Gym Interior"
+                 class="w-full h-full object-cover opacity-100 scale-105"
+                 src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop"/>
+            <div class="absolute inset-0 premium-overlay"></div>
         </div>
 
         <!-- Wrapper Principal -->
@@ -249,7 +251,7 @@
                                                class="p-2 rounded-lg bg-amber-500/20 text-amber-300 hover:bg-amber-500 hover:text-slate-950 border border-amber-500/40 transition-all">
                                                 <span class="material-symbols-outlined text-lg block">edit</span>
                                             </a>
-                                           
+
 
                                             <!-- Inactivar -->
                                             <% if (socio.isActivo()) {%>
@@ -260,7 +262,7 @@
                                                 <span class="material-symbols-outlined text-lg block">person_off</span>
                                             </a>
 
-                                            
+
 
                                             <% } else {%>
                                             <a href="SocioController?accion=activar&id=<%= socio.getIdSocio()%>"
@@ -270,7 +272,7 @@
                                                 <span class="material-symbols-outlined text-lg block">person_check</span>
                                             </a>
 
-                                            
+
 
                                             <% }%>
 
