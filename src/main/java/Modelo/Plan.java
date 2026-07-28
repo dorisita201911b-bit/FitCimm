@@ -1,16 +1,27 @@
 package Modelo;
 
+import java.math.BigDecimal;
+
 public class Plan {
 
     private int idPlan;
     private String nombre;
     private int duracionDias;
-    private double valor;
+    private BigDecimal valor;
     private boolean activo;
 
 
     public Plan() {
     }
+
+    public Plan(int idPlan, String nombre, int duracionDias, BigDecimal valor, boolean activo) {
+        this.idPlan = idPlan;
+        this.nombre = nombre;
+        this.duracionDias = duracionDias;
+        this.valor = valor;
+        this.activo = activo;
+    }
+    
 
 
     public int getIdPlan() {
@@ -40,11 +51,11 @@ public class Plan {
     }
 
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

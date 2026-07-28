@@ -1,6 +1,8 @@
 package Modelo;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Membresia {
 
@@ -8,10 +10,11 @@ public class Membresia {
     private int idSocio;
     private int idPlan;
 
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
-    private double valorPagado;
+    private BigDecimal valorPagado;
+    private EstadoMembresia estado;
 
     // Para mostrar información en consultas
     private String documento;
@@ -20,6 +23,22 @@ public class Membresia {
 
     public Membresia() {
     }
+
+    public Membresia(int idMembresia, int idSocio, int idPlan, LocalDate fechaInicio, LocalDate fechaFin, BigDecimal valorPagado, EstadoMembresia estado, String documento, String nombreSocio, String nombrePlan) {
+        this.idMembresia = idMembresia;
+        this.idSocio = idSocio;
+        this.idPlan = idPlan;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.valorPagado = valorPagado;
+        this.estado = estado;
+        this.documento = documento;
+        this.nombreSocio = nombreSocio;
+        this.nombrePlan = nombrePlan;
+    }
+    
+
+    
 
     public int getIdMembresia() {
         return idMembresia;
@@ -45,27 +64,27 @@ public class Membresia {
         this.idPlan = idPlan;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
-    public double getValorPagado() {
+    public BigDecimal getValorPagado() {
         return valorPagado;
     }
 
-    public void setValorPagado(double valorPagado) {
+    public void setValorPagado(BigDecimal valorPagado) {
         this.valorPagado = valorPagado;
     }
 
@@ -92,5 +111,14 @@ public class Membresia {
     public void setNombrePlan(String nombrePlan) {
         this.nombrePlan = nombrePlan;
     }
+
+    public EstadoMembresia getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoMembresia estado) {
+        this.estado = estado;
+    }
+    
 
 }

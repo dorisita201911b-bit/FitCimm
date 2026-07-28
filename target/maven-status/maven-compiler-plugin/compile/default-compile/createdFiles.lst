@@ -1,13 +1,17 @@
 Controlador\SocioController.class
+Servicio\SocioService.class
 Dao\PlanDao.class
 Dao\IngresoDao.class
 Modelo\Reporte.class
+Servicio\PlanServicio.class
 Dao\MembresiaDao.class
 Dao\SocioDao.class
 Modelo\Plan.class
 Servicio\MembresiaServicio.class
+Controlador\PlanController.class
 Util\Conexion.class
 Modelo\Membresia.class
+Modelo\EstadoMembresia.class
 Controlador\ReporteController.class
 Controlador\MembresiaController.class
 Modelo\Socio.class

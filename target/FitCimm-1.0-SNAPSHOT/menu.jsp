@@ -111,22 +111,53 @@
                         </button>
                     </div>
                 </div>
+                <!-- Card 2: Gestión de Socios (NUEVA OPCIÓN) -->
+                <div class="hover-card-trigger group cursor-pointer h-full" onclick="location.href = 'SocioController?accion=listar'">
+                    <div class="glass-card h-full w-full p-8 flex flex-col items-center text-center rounded-2xl shadow-xl">
+                        <div class="w-20 h-20 mb-8 rounded-full flex items-center justify-center border border-primary/50 bg-primary/20 group-hover:bg-primary/30 transition-all duration-500 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-4xl">group</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                            Gestión de Socios
+                        </h3>
+                        <p class="text-white mb-8 flex-grow text-xs leading-relaxed font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                            Administración, registro, edición y consulta de la información detallada de los afiliados al sistema.
+                        </p>
+                        <button class="w-full py-3.5 px-6 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-xs uppercase tracking-[0.15em] rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-[0_5px_20px_-5px_rgba(56,189,248,0.6)]"
+                                onclick="event.stopPropagation(); location.href = 'SocioController?accion=listar';">
+                            <span>GESTIONAR</span>
+                            <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
 
-                <!-- Card 2: GestionPlanesyMembresia.jsp -->
-                <div class="hover-card-trigger group cursor-pointer h-full" onclick="location.href = 'GestionPlanesyMembresia.jsp'">
-                    <div class="glass-card h-full w-full p-10 flex flex-col items-center text-center rounded-2xl shadow-xl">
-                        <div class="w-20 h-20 mb-10 rounded-full flex items-center justify-center border border-primary/50 bg-primary/20 group-hover:bg-primary/30 transition-all duration-500 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                <!-- Card 3: Gestión de Planes y Membresías -->
+                <div class="hover-card-trigger group cursor-pointer h-full">
+                    <div class="glass-card h-full w-full p-8 flex flex-col items-center text-center rounded-2xl shadow-xl">
+                        <div class="w-20 h-20 mb-8 rounded-full flex items-center justify-center border border-primary/50 bg-primary/20 group-hover:bg-primary/30 transition-all duration-500 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
                             <span class="material-symbols-outlined text-primary text-4xl">credit_card</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                            Gestion de Planes y Membresias
+                        <h3 class="text-xl font-bold text-white mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                            Gestion Planes y Membresias
                         </h3>
-                        <p class="text-white mb-12 flex-grow text-sm leading-relaxed font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-                            Administración completa de membresías, pagos, renovaciones y facturación digital para usuarios.
+                        <p class="text-white mb-8 flex-grow text-xs leading-relaxed font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                            Administración completa de membresías, pagos, renovaciones y facturación digital.
                         </p>
-                        <button class="w-full py-4 px-8 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-xs uppercase tracking-[0.15em] rounded-lg transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-[0_5px_20px_-5px_rgba(56,189,248,0.6)]">
-                            <span>VENTA PLAN Y MEMBRESIA</span>
-                            <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+
+                        <!-- Administración de Membresías -->
+                        <button
+                            class="w-full py-2.5 px-4 mb-2 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-[10px] uppercase tracking-[0.1em] rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                            onclick="event.stopPropagation(); location.href = 'PlanController?accion=listaPlanes';">
+                            <span>ADMINISTAR PLANES</span>
+                            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                        </button>
+
+                        <!-- Ventas -->
+                        <button
+                            class="w-full py-2.5 px-4 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-[10px] uppercase tracking-[0.1em] rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                            onclick="event.stopPropagation(); location.href = 'RegistrarMembresia.jsp';">
+                            <span>VENTAS DE PLANES</span>
+                            <span class="material-symbols-outlined text-xs">arrow_forward</span>
                         </button>
                     </div>
                 </div>

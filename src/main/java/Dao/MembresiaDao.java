@@ -4,9 +4,12 @@ import Modelo.Membresia;
 import Util.Conexion;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MembresiaDao {
 
@@ -27,9 +30,9 @@ public class MembresiaDao {
 
             ps.setInt(1, membresia.getIdSocio());
             ps.setInt(2, membresia.getIdPlan());
-            ps.setDate(3, membresia.getFechaInicio());
-            ps.setDate(4, membresia.getFechaFin());
-            ps.setDouble(5, membresia.getValorPagado());
+            ps.setDate(3, Date.valueOf(membresia.getFechaInicio()));
+            ps.setDate(4, Date.valueOf(membresia.getFechaFin()));
+            ps.setBigDecimal(5, membresia.getValorPagado());
 
             registrado = ps.executeUpdate() > 0;
 
@@ -74,9 +77,9 @@ public class MembresiaDao {
                 membresia.setIdMembresia(rs.getInt("id_membresia"));
                 membresia.setIdSocio(rs.getInt("id_socio"));
                 membresia.setIdPlan(rs.getInt("id_plan"));
-                membresia.setFechaInicio(rs.getDate("fecha_inicio"));
-                membresia.setFechaFin(rs.getDate("fecha_fin"));
-                membresia.setValorPagado(rs.getDouble("valor_pagado"));
+                membresia.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
+                membresia.setFechaFin(rs.getDate("fecha_fin").toLocalDate());
+                membresia.setValorPagado(rs.getBigDecimal("valor_pagado"));
 
             }
 
@@ -142,15 +145,15 @@ public class MembresiaDao {
                 );
 
                 m.setFechaInicio(
-                        rs.getDate("fecha_inicio")
+                        rs.getDate("fecha_inicio").toLocalDate()
                 );
 
                 m.setFechaFin(
-                        rs.getDate("fecha_fin")
+                        rs.getDate("fecha_fin").toLocalDate()
                 );
 
                 m.setValorPagado(
-                        rs.getDouble("valor_pagado")
+                        rs.getBigDecimal("valor_pagado")
                 );
 
                 lista.add(m);
@@ -165,6 +168,90 @@ public class MembresiaDao {
 
             e.printStackTrace();
 
+        }
+
+        return lista;
+    }
+
+    // ANDREA 
+    public Membresia MtObtenerSocio(int idSocio) throws SQLException {
+        Membresia membresia = null;
+
+        String consulta = "SELECT * FROM membresia WHERE id_Socio = ?";
+
+        try (Connection cn = Conexion.getConexion(); PreparedStatement ps = cn.prepareStatement(consulta)) {
+            ps.setInt(1, idSocio);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                membresia = new Membresia();
+                membresia.setIdMembresia(rs.getInt("id_Membresia"));
+                membresia.setIdSocio(rs.getInt("id_Socio"));
+                membresia.setIdPlan(rs.getInt("id_Plan"));
+                membresia.setFechaInicio(rs.getDate("fecha_Inicio").toLocalDate());
+                membresia.setFechaFin(rs.getDate("fecha_Fin").toLocalDate());
+
+            }
+        }
+        return membresia;
+    }
+    // Historial de membresias por socio
+
+    public List<Membresia> MtHistorialMembresias(int idSocio) throws SQLException {
+
+        List<Membresia> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM membresia WHERE id_Socio=? ORDER BY fecha_Inicio DESC";
+
+        try (Connection cn = Conexion.getConexion(); PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setInt(1, idSocio);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Membresia m = new Membresia();
+
+                m.setIdMembresia(rs.getInt("id_Membresia"));
+                m.setIdSocio(rs.getInt("id_Socio"));
+                m.setIdPlan(rs.getInt("id_Plan"));
+                m.setFechaInicio(rs.getDate("fecha_Inicio").toLocalDate());
+                m.setFechaFin(rs.getDate("fecha_Fin").toLocalDate());
+                m.setValorPagado(rs.getBigDecimal("valor_Pagado"));
+
+                lista.add(m);
+            }
+        }
+
+        return lista;
+    }
+    //lista membresia 
+
+    public List<Membresia> listar() throws Exception {
+
+        List<Membresia> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM membresia";
+
+        try (Connection con = Conexion.getConexion(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+
+                Membresia m = new Membresia();
+
+                m.setIdMembresia(rs.getInt("id_membresia"));
+                m.setIdSocio(rs.getInt("id_socio"));
+                m.setIdPlan(rs.getInt("id_plan"));
+                m.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
+                m.setFechaFin(rs.getDate("fecha_fin").toLocalDate());
+                m.setValorPagado(rs.getBigDecimal("valor_pagado"));
+
+                lista.add(m);
+            }
+
+        } catch (Exception e) {
+            throw e;
         }
 
         return lista;

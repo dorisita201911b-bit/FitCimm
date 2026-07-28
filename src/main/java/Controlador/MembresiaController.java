@@ -14,8 +14,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "MembresiaController", urlPatterns = {"/MembresiaController"})
+@WebServlet("/MembresiasController")
 public class MembresiaController extends HttpServlet {
 
     private MembresiaServicio servicio;
@@ -33,10 +34,37 @@ public class MembresiaController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        cargarDatos(request);
+        String accion = request.getParameter("accion");
 
-        request.getRequestDispatcher("GestionPlanesyMembresia.jsp")
-                .forward(request, response);
+        if ("listaMembresias".equals(accion)) {
+
+            try {
+
+                List<Membresia> lista = servicio.listar();
+
+                request.setAttribute("listaMembresias", lista);
+
+                request.getRequestDispatcher("MembresiaEstado.jsp")
+                        .forward(request, response);
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+                request.setAttribute("error", e.getMessage());
+
+                request.getRequestDispatcher("MembresiaEstado.jsp")
+                        .forward(request, response);
+            }
+
+        } else {
+
+            cargarDatos(request);
+
+            request.getRequestDispatcher("GestionPlanesyMembresia.jsp")
+                    .forward(request, response);
+
+        }
 
     }
 

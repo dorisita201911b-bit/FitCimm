@@ -3,13 +3,17 @@ package Servicio;
 import Dao.MembresiaDao;
 import Dao.PlanDao;
 import Dao.SocioDao;
+import Modelo.EstadoMembresia;
 import Modelo.Membresia;
 import Modelo.Plan;
 import Modelo.Socio;
+import java.math.BigDecimal;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MembresiaServicio {
 
@@ -59,7 +63,7 @@ public class MembresiaServicio {
         }
 
         // RN-07
-        if (plan.getValor() <= 0) {
+        if (plan.getValor().compareTo(BigDecimal.ZERO) <= 0) {
             return "❌ El valor del plan debe ser mayor que cero.";
         }
 
@@ -80,7 +84,7 @@ public class MembresiaServicio {
 
         } else {
 
-            LocalDate finAnterior = anterior.getFechaFin().toLocalDate();
+            LocalDate finAnterior = anterior.getFechaFin();
 
             // RN-03
             if (!finAnterior.isBefore(LocalDate.now())) {
@@ -107,8 +111,8 @@ public class MembresiaServicio {
 
         nueva.setIdSocio(idSocio);
         nueva.setIdPlan(idPlan);
-        nueva.setFechaInicio(Date.valueOf(inicio));
-        nueva.setFechaFin(Date.valueOf(fin));
+        nueva.setFechaInicio(inicio);
+        nueva.setFechaFin(fin);
         nueva.setValorPagado(plan.getValor());
 
         boolean guardado = membresiaDao.registrarMembresia(nueva);
@@ -154,5 +158,35 @@ public class MembresiaServicio {
         return membresiaDao.listarProximosVencimientos();
 
     }
+    
+    //ANDREA 
+     //ESTADO DE LA MEMBRESIA RN-04
 
+    public EstadoMembresia getEstado(Membresia m) { // esta clase va a sevolver un estado membresia
+        LocalDate Hoy = LocalDate.now(); // guardamos la fecha actual
+        if (m.getFechaFin().isBefore((Hoy))) { //condicio para saber si la fecha fin de la membresia ya paso
+            return EstadoMembresia.VENCIDAS; //devuelve el resultado
+        }
+        long diasRestantes = ChronoUnit.DAYS.between(Hoy, m.getFechaFin()); //ChronoUnit.DAYS para medir el tiempo en dias
+        if (diasRestantes <= 5) {
+            return EstadoMembresia.POR_VENCER;
+        }
+        return EstadoMembresia.VIGENTE;
+
+    }
+    private MembresiaDao dao = new MembresiaDao();
+
+    public List<Membresia> listar() throws Exception {
+
+        List<Membresia> lista = dao.listar();
+
+        for (Membresia m : lista) {
+            m.setEstado(getEstado(m));
+        }
+
+        return lista;
+    }
 }
+
+
+
