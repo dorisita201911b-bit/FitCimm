@@ -1,169 +1,181 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitCimm - Sistema de Gestión</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: #f8f9fa;
-        }
-
-        /* HEADER */
-        .header-custom {
-            height: 60px;
-            background-color: #212529;
-            color: #fff;
-            z-index: 1030;
-        }
-
-        /* CONTENEDOR PRINCIPAL (SIDEBAR + CONTENIDO) */
-        .main-wrapper {
-            display: flex;
-            flex: 1;
-        }
-
-        /* SIDEBAR / MENÚ LATERAL */
-        .sidebar {
-            width: 250px;
-            background-color: #343a40;
-            min-height: calc(100vh - 60px);
-            transition: all 0.3s;
-        }
-
-        .sidebar .nav-link {
-            color: #adb5bd;
-            padding: 12px 20px;
-            font-weight: 500;
-            border-radius: 6px;
-            margin: 4px 8px;
-        }
-
-        .sidebar .nav-link:hover, 
-        .sidebar .nav-link.active {
-            color: #fff;
-            background-color: #0d6efd;
-        }
-
-        .sidebar .nav-link i {
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* ÁREA DE CONTENIDO */
-        .content-area {
-            flex: 1;
-            padding: 25px;
-            background-color: #f8f9fa;
-        }
-
-        /* Responsive: Ocultar sidebar en pantallas pequeñas */
-        @media (max-width: 768px) {
-            .main-wrapper {
-                flex-direction: column;
+<html class="scroll-smooth" lang="es">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>FitCimm | Gestión Deportiva SENA</title>
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <!-- Google Fonts: Montserrat -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+        <!-- Material Symbols -->
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+        <style>
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background-color: #0c2340;
             }
-            .sidebar {
-                width: 100%;
-                min-height: auto;
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
             }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ========================================== -->
-    <!-- 1. HEADER                                  -->
-    <!-- ========================================== -->
-    <header class="header-custom d-flex align-items-center justify-content-between px-3 shadow-sm">
-        <div class="d-flex align-items-center">
-            <i class="bi bi-person-arms-up fs-3 text-primary me-2"></i>
-            <span class="fs-5 fw-bold text-uppercase tracking-wide">FitCimm</span>
-        </div>
-        
-        <div class="d-flex align-items-center gap-3">
-            <span class="d-none d-sm-inline badge bg-success me-2"><i class="bi bi-circle-fill me-1"></i> Sistema Activo</span>
-            <div class="dropdown">
-                <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
-                    <i class="bi bi-person-circle fs-5"></i> Admin
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Configuración</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
-
-    <!-- CONTENEDOR CENTRAL -->
-    <div class="main-wrapper">
-
-        <!-- ========================================== -->
-        <!-- 2. MENÚ LATERAL (SIDEBAR)                  -->
-        <!-- ========================================== -->
-        <aside class="sidebar py-3">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="menu.jsp?contenido=GestionSocios.jsp" class="nav-link">
-                        <i class="bi bi-people-fill"></i> Gestión de Socios
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="menu.jsp?contenido=GestionPlanesyMembresia.jsp" class="nav-link">
-                        <i class="bi bi-card-checklist"></i> Gestión de Planes y Membresía
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="menu.jsp?contenido=GestionIngreso.jsp" class="nav-link">
-                        <i class="bi bi-door-open-fill"></i> Gestión de Ingreso
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="menu.jsp?contenido=GestionReportes.jsp" class="nav-link">
-                        <i class="bi bi-bar-chart-line-fill"></i> Gestión de Reportes
-                    </a>
-                </li>
-            </ul>
-        </aside>
-
-        <!-- ========================================== -->
-        <!-- 3. ÁREA DE CONTENIDO DINÁMICO              -->
-        <!-- ========================================== -->
-        <main class="content-area">
-            <div class="container-fluid">
-                <%
-                    String contenido = request.getParameter("contenido");
-                    if (contenido != null && !contenido.isEmpty()) {
-                %>
-                        <jsp:include page="<%= contenido %>" />
-                <%
-                    } else {
-                %>
-                        <div class="p-5 mb-4 bg-white rounded-4 shadow-sm border">
-                            <div class="container-fluid py-3">
-                                <h1 class="display-5 fw-bold text-primary">Bienvenido a FitCimm</h1>
-                                <p class="col-md-8 fs-4 text-muted">Selecciona una opción en el menú lateral para gestionar el sistema del gimnasio.</p>
-                            </div>
-                        </div>
-                <%
+            /* Overlay muy sutil y claro para que la nueva imagen de fondo luzca completamente nítida */
+            .premium-overlay {
+                background: linear-gradient(180deg, rgba(2, 6, 23, 0.15) 0%, rgba(2, 6, 23, 0.35) 100%);
+            }
+            /* Tarjetas con el mismo tono azul clarito elegante en todas */
+            .glass-card {
+                background: rgba(56, 189, 248, 0.12);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                border: 1px solid rgba(56, 189, 248, 0.4);
+                transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            .hover-card-trigger:hover .glass-card {
+                transform: translateY(-8px) scale(1.01);
+                background: rgba(56, 189, 248, 0.22);
+                border-color: rgba(56, 189, 248, 0.9);
+                box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3), 0 0 30px -5px rgba(56, 189, 248, 0.5);
+            }
+            .bg-kinetic-gradient {
+                background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+            }
+        </style>
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            "primary": "#38bdf8",
+                            "secondary": "#0284c7",
+                            "charcoal": "#0c2340",
+                            "surface": "#f9f9f9",
+                            "on-surface": "#1a1c1c",
+                            "on-primary": "#0f172a"
+                        },
+                        borderRadius: {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "1rem",
+                            "2xl": "2rem"
+                        }
                     }
-                %>
+                }
+            }
+        </script>
+    </head>
+    <body class="min-h-screen relative flex items-center justify-center overflow-x-hidden selection:bg-primary selection:text-slate-950">
+        <!-- Full-screen Background (Nueva imagen de gimnasio moderno y amplio) -->
+        <div class="fixed inset-0 z-0">
+            <img alt="Gym Interior" class="w-full h-full object-cover opacity-100 scale-105" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop"/>
+            <div class="absolute inset-0 premium-overlay"></div>
+        </div>
+
+        <main class="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center justify-center min-h-screen">
+            <!-- Header Section -->
+            <header class="mb-20 text-center animate-fade-in" style="opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);">
+                <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-4 tracking-[-0.04em] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+                    Fit<span class="text-primary">Cimm</span>
+                </h1>
+                <div class="flex items-center justify-center gap-4 mb-3">
+                    <div class="h-[1px] w-10 bg-primary/80"></div>
+                    <h2 class="text-sm md:text-lg font-bold text-primary uppercase tracking-[0.3em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                        Gestión Deportiva • SENA
+                    </h2>
+                    <div class="h-[1px] w-10 bg-primary/80"></div>
+                </div>
+                <p class="text-white max-w-lg mx-auto font-medium text-sm md:text-base mt-6 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                    Plataforma administrativa para el control integral de usuarios, planes y rendimiento deportivo en los centros de formación SENA.
+                </p>
+            </header>
+
+            <!-- Module Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl items-stretch">
+
+                <!-- Card 1: GestionIngreso.jsp -->
+                <div class="hover-card-trigger group cursor-pointer h-full" onclick="location.href = 'GestionIngreso.jsp'">
+                    <div class="glass-card h-full w-full p-10 flex flex-col items-center text-center rounded-2xl shadow-xl">
+                        <div class="w-20 h-20 mb-10 rounded-full flex items-center justify-center border border-primary/50 bg-primary/20 group-hover:bg-primary/30 transition-all duration-500 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-4xl">sensor_door</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                            Gestion Ingreso
+                        </h3>
+                        <p class="text-white mb-12 flex-grow text-sm leading-relaxed font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                            Registro y visualización en tiempo real de entradas y salidas de usuarios a las instalaciones deportivas.
+                        </p>
+                        <button class="w-full py-4 px-8 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-xs uppercase tracking-[0.15em] rounded-lg transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-[0_5px_20px_-5px_rgba(56,189,248,0.6)]">
+                            <span>INGRESAR</span>
+                            <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: GestionPlanesyMembresia.jsp -->
+                <div class="hover-card-trigger group cursor-pointer h-full" onclick="location.href = 'GestionPlanesyMembresia.jsp'">
+                    <div class="glass-card h-full w-full p-10 flex flex-col items-center text-center rounded-2xl shadow-xl">
+                        <div class="w-20 h-20 mb-10 rounded-full flex items-center justify-center border border-primary/50 bg-primary/20 group-hover:bg-primary/30 transition-all duration-500 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-4xl">credit_card</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                            Gestion de Planes y Membresias
+                        </h3>
+                        <p class="text-white mb-12 flex-grow text-sm leading-relaxed font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                            Administración completa de membresías, pagos, renovaciones y facturación digital para usuarios.
+                        </p>
+                        <button class="w-full py-4 px-8 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-xs uppercase tracking-[0.15em] rounded-lg transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-[0_5px_20px_-5px_rgba(56,189,248,0.6)]">
+                            <span>VENTA PLAN Y MEMBRESIA</span>
+                            <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: GestionReportes.jsp -->
+                <div class="hover-card-trigger group cursor-pointer h-full" onclick="location.href = 'GestionReportes.jsp'">
+                    <div class="glass-card h-full w-full p-10 flex flex-col items-center text-center rounded-2xl shadow-xl">
+                        <div class="w-20 h-20 mb-10 rounded-full flex items-center justify-center border border-primary/50 bg-primary/20 group-hover:bg-primary/30 transition-all duration-500 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-4xl">bar_chart</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                            Gestion Reportes
+                        </h3>
+                        <p class="text-white mb-12 flex-grow text-sm leading-relaxed font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                            Visualización de KPIs, métricas de asistencia y estadísticas de rendimiento para la toma de decisiones.
+                        </p>
+                        <button class="w-full py-4 px-8 bg-transparent border-2 border-primary hover:bg-primary/25 text-white font-bold text-xs uppercase tracking-[0.15em] rounded-lg transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-[0_5px_20px_-5px_rgba(56,189,248,0.6)]">
+                            <span>ANALIZAR</span>
+                            <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
+
         </main>
 
-    </div>
+        <script>
+            // Entrance animation trigger
+            window.addEventListener('DOMContentLoaded', () => {
+                const header = document.querySelector('header');
+                if (header) {
+                    setTimeout(() => {
+                        header.style.opacity = '1';
+                        header.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
 
-    <!-- Bootstrap 5 JS Bundle CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+            // Background Parallax Effect
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.pageX) / 90;
+                const y = (window.innerHeight / 2 - e.pageY) / 90;
+                const bg = document.querySelector('.fixed img');
+                if (bg) {
+                    bg.style.transition = 'transform 0.2s ease-out';
+                    bg.style.transform = `scale(1.08) translate(${x}px, ${y}px)`;
+                }
+            });
+        </script>
+    </body>
 </html>
