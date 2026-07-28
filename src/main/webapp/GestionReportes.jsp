@@ -8,7 +8,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Reportes Gimnasio - FitCimm</title>
-        
+
         <!-- Bootstrap 5 CSS CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap Icons CDN -->
@@ -87,6 +87,12 @@
                 padding: 0.85rem 1rem;
                 font-weight: 500;
                 transition: all 0.3s ease;
+            }
+
+            /* Regla para cambiar el icono del calendario a blanco */
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                filter: invert(1) brightness(2);
+                cursor: pointer;
             }
 
             .form-control:focus, .form-select:focus {
@@ -204,7 +210,7 @@
         </div>
 
         <main class="position-relative z-10 w-100 max-w-5xl mx-auto px-4 py-5" style="max-width: 1024px;">
-            
+
             <!-- Barra de navegación superior -->
             <div class="glass-card d-flex justify-content-between align-items-center py-3 px-4 mb-4">
                 <a href="menu.jsp" class="btn btn-outline-custom d-inline-flex align-items-center gap-2">
@@ -251,7 +257,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (Reporte r : socios) { %>
+                                <% for (Reporte r : socios) {%>
                                 <tr>
                                     <td class="fw-semibold text-info"><%=r.getDocumento()%></td>
                                     <td class="text-white fw-semibold"><%=r.getNombres()%></td>
@@ -278,17 +284,17 @@
 
                     <form action="ReporteController" method="post" class="row g-3 align-items-end mb-4">
                         <input type="hidden" name="accion" value="recaudo">
-                        
+
                         <div class="col-md-4">
                             <label class="form-label">Desde:</label>
                             <input type="date" name="inicio" class="form-control" required>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <label class="form-label">Hasta:</label>
                             <input type="date" name="fin" class="form-control" required>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <button type="submit" class="btn btn-primary-custom w-100 d-inline-flex align-items-center justify-content-center gap-2">
                                 <i class="bi bi-filter"></i> Consultar recaudo
@@ -309,7 +315,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (Reporte r : recaudo) { %>
+                                <% for (Reporte r : recaudo) {%>
                                 <tr>
                                     <td class="text-white fw-semibold"><%=r.getNombrePlan()%></td>
                                     <td class="fw-bold text-success fs-5">$ <%=r.getTotal()%></td>
@@ -359,7 +365,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <% } %>
+                    <% }%>
                 </div>
             </div>
 

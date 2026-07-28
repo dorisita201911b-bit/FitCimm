@@ -53,6 +53,13 @@
                 padding: 0.75rem 1rem;
             }
 
+            /* >>> PEGA ESTO AQUÍ MISMO <<< */
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                filter: invert(1) brightness(2);
+                cursor: pointer;
+            }
+
+
             .form-control:focus {
                 background: rgba(15, 23, 42, 1);
                 border-color: #38bdf8;

@@ -100,9 +100,8 @@ public class MembresiaDao {
 
         ArrayList<Membresia> lista = new ArrayList<>();
 
-        String sql =
-                "SELECT "
-                + "m.id_membresia, "
+        String sql
+                = "SELECT "
                 + "s.documento, "
                 + "CONCAT(s.nombres,' ',s.apellidos) AS nombre_socio, "
                 + "p.nombre AS nombre_plan, "
@@ -129,10 +128,6 @@ public class MembresiaDao {
             while (rs.next()) {
 
                 Membresia m = new Membresia();
-
-                m.setIdMembresia(
-                        rs.getInt("id_membresia")
-                );
 
                 m.setDocumento(
                         rs.getString("documento")
@@ -173,7 +168,5 @@ public class MembresiaDao {
         }
 
         return lista;
-
     }
-
 }

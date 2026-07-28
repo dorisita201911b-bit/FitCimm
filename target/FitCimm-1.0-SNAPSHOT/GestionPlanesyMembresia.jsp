@@ -270,7 +270,6 @@
                         <table class="table table-custom mb-0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Documento</th>
                                     <th>Socio</th>
                                     <th>Plan</th>
@@ -282,7 +281,6 @@
                             <tbody>
                                 <% for (Membresia m : lista) { %>
                                 <tr>
-                                    <td><%=m.getIdMembresia()%></td>
                                     <td><%=m.getDocumento()%></td>
                                     <td class="fw-semibold text-white"><%=m.getNombreSocio()%></td>
                                     <td><%=m.getNombrePlan()%></td>
