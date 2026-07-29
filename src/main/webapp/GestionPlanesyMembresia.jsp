@@ -168,14 +168,15 @@
     <body>
         <!-- Fondo de pantalla con overlay optimizado -->
         <main class="fixed inset-0 z-0" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
-            <img alt="Gym Interior" class="w-full h-full object-cover scale-105" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop" style="width: 100%; height: 100%; object-fit: cover;">
+            <img  alt="Gym Interior"
+                  src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop">            <div class="premium-overlay"></div>
             <div class="absolute inset-0 premium-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
         </main>
 
         <!-- Tarjeta principal con el ancho amplio optimizado -->
         <main class="relative z-10 w-full mx-auto px-4 py-8" style="max-width: 1150px;">
             <div class="glass-card p-4 md:p-5">
-                
+
                 <!-- Botón para regresar al menú -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <a href="menu.jsp" class="btn btn-outline-custom d-inline-flex align-items-center gap-2">
@@ -203,7 +204,7 @@
                     <h2 class="h5 text-info fw-bold mb-3" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
                         <i class="bi bi-person-plus me-2"></i> Vender / Renovar Membresía
                     </h2>
-                    
+
                     <form action="MembresiasController" method="post">
                         <input type="hidden" name="accion" value="vender">
 
@@ -217,7 +218,7 @@
                                 <label class="form-label">Seleccionar Plan:</label>
                                 <select name="idPlan" class="form-select" required>
                                     <option value="">Seleccione un plan</option>
-                                    <% 
+                                    <%
                                         ArrayList<Plan> planes = (ArrayList<Plan>) request.getAttribute("planes");
                                         if (planes != null) {
                                             for (Plan p : planes) {
@@ -225,7 +226,7 @@
                                     <option value="<%=p.getIdPlan()%>">
                                         <%=p.getNombre()%> - <%=p.getDuracionDias()%> días - $<%=p.getValor()%>
                                     </option>
-                                    <% 
+                                    <%
                                             }
                                         }
                                     %>
@@ -261,7 +262,7 @@
                         </button>
                     </form>
 
-                    <% 
+                    <%
                         ArrayList<Membresia> lista = (ArrayList<Membresia>) request.getAttribute("listaVencimientos");
                         if (lista != null) {
                             if (lista.size() > 0) {
@@ -279,7 +280,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (Membresia m : lista) { %>
+                                <% for (Membresia m : lista) {%>
                                 <tr>
                                     <td><%=m.getDocumento()%></td>
                                     <td class="fw-semibold text-white"><%=m.getNombreSocio()%></td>
@@ -292,15 +293,15 @@
                             </tbody>
                         </table>
                     </div>
-                    <% 
-                            } else {
+                    <%
+                    } else {
                     %>
                     <div class="alert alert-warning mt-3 border-0 bg-warning text-dark fw-bold shadow">
                         <i class="bi bi-exclamation-triangle-fill me-2"></i> No existen membresías que venzan en los próximos 5 días.
                     </div>
-                    <% 
+                    <%
                             }
-                        } 
+                        }
                     %>
                 </div>
 

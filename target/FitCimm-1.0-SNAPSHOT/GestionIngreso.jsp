@@ -165,7 +165,8 @@
     <body>
         <!-- Fondo de pantalla con overlay optimizado -->
         <div class="fixed inset-0 z-0" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
-            <img alt="Gym Interior" class="w-full h-full object-cover scale-105" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop" style="width: 100%; height: 100%; object-fit: cover;">
+            <img alt="Gym Interior"
+                 src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop">            <div class="premium-overlay"></div>
             <div class="absolute inset-0 premium-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
         </div>
 
@@ -245,8 +246,7 @@
                     <div class="table-responsive mt-4">
                         <table class="table table-custom mb-0">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
+                                <tr>                                  
                                     <th>Socio</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
@@ -256,8 +256,7 @@
                                 <%
                                     for (Ingreso i : lista) {
                                 %>
-                                <tr>
-                                    <td><%=i.getIdIngreso()%></td>
+                                <tr>                                   
                                     <td class="fw-semibold text-white"><%=i.getNombreSocio()%></td>
                                     <td><%=i.getFechaIngreso()%></td>
                                     <td><%=i.getHoraIngreso()%></td>

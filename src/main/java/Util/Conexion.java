@@ -7,7 +7,7 @@ public class Conexion {
 
     private static final String URL = "jdbc:mysql://localhost:3306/fitcimm";
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "Sena2026*";
 
     public static Connection getConexion() {
 

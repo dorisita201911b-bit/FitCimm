@@ -205,8 +205,9 @@
     <body>
         <!-- Fondo con overlay -->
         <div class="bg-wrapper">
-            <img alt="Gym Interior" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop">
-            <div class="premium-overlay"></div>
+            <img
+                alt="Gym Interior"
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop">            <div class="premium-overlay"></div>
         </div>
 
         <main class="position-relative z-10 w-100 max-w-5xl mx-auto px-4 py-5" style="max-width: 1024px;">
